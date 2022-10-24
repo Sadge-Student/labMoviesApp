@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom"
 import HomePage from "./pages/homePage"
 import MoviePage from "./pages/movieDetailsPage"
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"
+import MovieReview from "./pages/movieReviewPage"
+import MovieReviewPage from "./pages/movieReviewPage"
 
 const App = () => {
     return (
@@ -18,6 +20,7 @@ const App = () => {
           </li>
         </ul>
         <Routes>
+          <Route path="/reviews/:id" element={ <MovieReviewPage />} />
           <Route exact path="/movies/favourites" element={<FavouriteMoviesPage />} />
           <Route path="/movies/:id" element={<MoviePage />} />
           <Route path="/" element={<HomePage />} />
