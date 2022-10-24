@@ -29,7 +29,7 @@ export default function MovieCard(props) {
         avater={
           movie.favourite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
-              <FavouriteIcon />
+              <FavoriteIcon />
             </Avatar>
           ) : null
         }
@@ -67,7 +67,7 @@ export default function MovieCard(props) {
         <IconButton aria-label="add to favorites" onClick={handleAddToFavourite}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
-        <Link to ={`/movies/${movies.id}`}>
+        <Link to ={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

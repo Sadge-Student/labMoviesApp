@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { SettingsEthernetSharp } from "@mui/icons-material"
+import { getGenres } from "../../api/tmdb-api"
 
 const formControl = 
   {
@@ -20,17 +21,13 @@ const formControl =
   };
 
 export default function FilterMoviesCard(props) {
+  const [genres, setGenres] = useState([{ id: '0', name: "All"}])
 
   useEffect(() => {
-    fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=" + process.env.REACT_APP_TMDB_KEY + "&language=en-US")
-      .then(res => res.json())
-      .then(json => {
-        return json.genres
-      })
-      .then(apiGenres => {
-        SettingsEthernetSharp([genres[0], ...apiGenres]);
-      });
-  }, []);
+    getGenres().then((allGenres) => {
+      setGenres([genres[0], ...allGenres]);
+    });
+  }, [])
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
