@@ -49,7 +49,7 @@ const MoviePage = (props) => {
                       cols={1}
                     >
                       <img
-                        src={`https://image.tmdb.org/t/p/w500/${image}`}
+                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
                         alt={image.poster_path}
                       />
                     </ImageListItem>

@@ -19,7 +19,7 @@ const App = () => {
         </ul>
         <Routes>
           <Route exact path="/movies/favourites" element={<FavouriteMoviesPage />} />
-          <Route path="/movies/:id" element={<HomePage />} />
+          <Route path="/movies/:id" element={<MoviePage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

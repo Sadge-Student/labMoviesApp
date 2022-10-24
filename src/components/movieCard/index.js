@@ -22,7 +22,7 @@ export default function MovieCard(props) {
     e.preventDefault();
     props.selectFavourite(movie.id);
   };
-
+  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader 
