@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { getMovies } from "../api/tmdb-api"
 import PageTemplate from "../components/templateMovieListPage"
-import {getMovies} from "../api/tmdb-api"
+import { useQuery } from "react-query"
+import Spinner from "../components/spinner"
 
 const HomePage = (props) => {
-  const [movies, setMovies] = useState([]);
-  const favourites = movies.filter((m) => m.favourite);
-  localStorage.setItem("favourites", JSON.stringify(favourites));
+  const { data, error, isLoading, isError } = useQuery('discover', getMovies)
 
-  const addToFavourites = (movieId) => {
-    const updatedMovies = movies.map((m) =>
-      m.id === movieId ? { ...m, favourite: true } : m
-    );
-    setMovies(updatedMovies);
-  };
+  if (isLoading)
+    return <Spinner />
 
-  useEffect(() => {
-    getMovies().then(movies => {
-      setMovies(movies);
-    });
-  }, []);
+  if (isError)
+    return <h1>{error.message}</h1>
 
-  return (
+  const movies = data.results;
+
+  const favourites = movies.filter(m => m.favourite)
+  localStorage.setItem('favourites', JSON.stringify(favourites))
+  const addToFavourites = (movieId) => true
+
+  return(
     <PageTemplate
       title="Discover Movies"
       movies={movies}
