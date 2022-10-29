@@ -22,6 +22,16 @@ const MoviesContextProvider = (props) => {
         ))
     };
 
+    const addToMustWatch = (movie) => {
+        let newMustWatch = [...mustWatch];
+
+        if (!mustWatch.includes(movie.id)) {
+            newMustWatch.push(movie.id);
+        }
+        setMustWatch(newMustWatch);
+        console.table(newMustWatch);
+    }
+
     const addReview = (movie, review) => {
         setMyReviews( {...myReviews, [movie.id]: review})
     };
@@ -33,6 +43,7 @@ const MoviesContextProvider = (props) => {
                 addToFavourites,
                 removeFromFavourites,
                 addReview,
+                addToMustWatch,
             }}
         >
             {props.children}
