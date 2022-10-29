@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import Card from "@mui/material/Card"
 import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
@@ -10,7 +10,6 @@ import SearchIcon from "@mui/icons-material/Search"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-import { SettingsEthernetSharp } from "@mui/icons-material"
 import { getGenres } from "../../api/tmdb-api"
 import { useQuery } from "react-query"
 import Spinner from "../spinner"
@@ -36,12 +35,6 @@ export default function FilterMoviesCard(props) {
   if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All"});
   }
-
-  useEffect(() => {
-    getGenres().then((allGenres) => {
-      setGenres([genres[0], ...allGenres]);
-    });
-  }, [])
 
   const handleChange = (e, type, value) => {
     e.preventDefault();

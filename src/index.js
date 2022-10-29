@@ -1,6 +1,6 @@
 import React from "react"
 import {createRoot} from "react-dom/client"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClientProvider, QueryClient } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom"
 import MoviesContextProvider from "./contexts/moviesContext"

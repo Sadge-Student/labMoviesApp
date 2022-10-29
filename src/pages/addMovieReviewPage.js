@@ -1,4 +1,4 @@
-import React from "raect"
+import React from "react"
 import PageTemplate from "../components/templateMoviePage"
 import ReviewForm from "../components/reviewForm"
 import { useLocation } from "react-router-dom"

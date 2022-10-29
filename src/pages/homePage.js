@@ -9,10 +9,10 @@ const HomePage = (props) => {
   const { data, error, isLoading, isError } = useQuery('discover', getMovies)
 
   if (isLoading)
-    return <Spinner />
+    return <Spinner />;
 
   if (isError)
-    return <h1>{error.message}</h1>
+    return <h1>{error.message}</h1>;
 
   const movies = data.results;
 

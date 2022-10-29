@@ -3,7 +3,9 @@ import React, { useState } from "react"
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-    const [favourites, setFavourites] = useState = ( [] )
+    const [favourites, setFavourites] = useState ( [] )
+    const [myReviews, setMyReviews] = useState ( {} )
+    const [mustWatch, setMustWatch] = useState ( [] )
 
     const addToFavourites = (movie) => {
         let newFavourites = [...favourites];
