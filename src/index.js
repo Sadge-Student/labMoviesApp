@@ -16,6 +16,7 @@ import SignUpPage from "./pages/signupPage"
 import LoginPage from "./pages/loginPage"
 import { AuthProvider } from "./contexts/authContext"
 import { ToggleColorMode, ThemeToggle} from "./components/themeToggle";
+import PrivateRoute from "./components/privateRoute"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,7 +38,7 @@ const App = () => {
                 {/* <ThemeToggle /> */}
                 <MoviesContextProvider>
                   <Routes>
-                    <Route exact path="/" element={<HomePage />} />
+                    <Route exact path="/" element={<PrivateRoute />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/login" element={<LoginPage />} />
                   </Routes>
