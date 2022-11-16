@@ -21,11 +21,11 @@ const HomePage = (props) => {
   const addToFavourites = (movieId) => true
 
   return(
-    <PageTemplate
-      title="Discover Movies"
-      movies={movies}
-      action={(movie) => {
-        return <AddToFavouritesIcon movie={movie} />
+      <PageTemplate
+        title="Discover Movies"
+        movies={movies}
+        action={(movie) => {
+          return <AddToFavouritesIcon movie={movie} />
       }}
     />
   );
