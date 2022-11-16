@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom"
 import { styled } from '@mui/material/styles'
 import { useTheme } from "@mui/material/styles"
 import { useMediaQuery } from "@mui/material"
+import { ThemeToggle} from "../themeToggle";
+
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -45,9 +47,9 @@ const SiteHeader = ({ history }) => {
                     <Typography variant="h4" sx={{ flexGrow: 1}}>
                         TMDB Client
                     </Typography>
-                    <Typography variant="h6" sx={{ flexGrow: 1}}>
+                    {/* <Typography variant="h6" sx={{ flexGrow: 1}}>
                         All you ever wanted to know about Movies!
-                    </Typography>
+                    </Typography> */}
                     {isMobile ? (
                         <>
                             <IconButton
@@ -97,6 +99,7 @@ const SiteHeader = ({ history }) => {
                             ))}
                         </>
                     )}
+                    <ThemeToggle />
                 </ToolBar>
             </AppBar>
             <Offset />
