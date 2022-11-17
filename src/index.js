@@ -38,7 +38,9 @@ const App = () => {
                 {/* <ThemeToggle /> */}
                 <MoviesContextProvider>
                   <Routes>
-                    <Route exact path="/" element={<PrivateRoute />} />
+                    <Route exact path="/" element={<PrivateRoute />}>
+                      <Route exact path="/" element={<HomePage />} />
+                    </Route>
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/login" element={<LoginPage />} />
                   </Routes>
