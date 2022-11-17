@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
 
 export const MoviesContext = React.createContext(null);
 
@@ -7,6 +9,26 @@ const MoviesContextProvider = (props) => {
     const [myReviews, setMyReviews] = useState ( {} )
     const [mustWatch, setMustWatch] = useState ( [] )
 
+    useEffect(() => {
+        const q = query(collection(db, 'favourites'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            let favouritesArr = []
+            querySnapshot.forEach((doc) => {
+                favouritesArr.push({...doc.data(), id: doc.id});
+            });
+            setFavourites(favouritesArr);
+            // console.log(favouritesArr);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const addFavouriteSync = async(movieId) => {
+        console.log("attempting to add " + movieId + " to firebase");
+        await addDoc(collection(db, 'favourites'), {
+            text: movieId
+        });
+    };
+
     const addToFavourites = (movie) => {
         let newFavourites = [...favourites];
         
@@ -14,6 +36,8 @@ const MoviesContextProvider = (props) => {
             newFavourites.push(movie.id);
         }
         setFavourites(newFavourites);
+        console.log(movie);
+        addFavouriteSync(movie.id);
     };
 
     const removeFromFavourites = (movie) => {
