@@ -18,7 +18,7 @@ const formControl =
   {
     margin: 1,
     minWidth: 220,
-    backgroundColor: "rgb(255, 255, 255)"
+    // backgroundColor: "rgb(255, 255, 255)"
   };
 
 export default function FilterMoviesCard(props) {
@@ -53,13 +53,15 @@ export default function FilterMoviesCard(props) {
     <Card 
       sx={{
         maxWidth: 345,
-        backgroundColor: "rgb(204, 204, 0)"
+        // backgroundColor: "rgb(204, 204, 0)"
       }} 
       variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
+          <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
+            <SearchIcon fontSize="large" />
+            Filter the movies.
+          </div>
         </Typography>
         <TextField
           sx={formControl}
@@ -71,7 +73,7 @@ export default function FilterMoviesCard(props) {
           onChange={handleTextChange}
         />
         <FormControl sx={formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel sx={{left: '-12px', top: '-5px'}}>Genre</InputLabel>
           <Select
             labelId="genre-label"
             id="genre-select"
@@ -96,9 +98,11 @@ export default function FilterMoviesCard(props) {
       />
       <CardContent>
         <Typography variant="h5" component="h1">
+        <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
           <SearchIcon fontSize="large" />
           Filter the movies.
           <br />
+        </div>
         </Typography>
       </CardContent>
     </Card>
