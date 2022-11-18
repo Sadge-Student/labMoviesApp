@@ -33,7 +33,7 @@ function ThemeToggle() {
 }
 
 function ToggleColorMode({children}) {
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState('dark');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
