@@ -6,6 +6,8 @@ import ImageListItem from "@mui/material/ImageListItem"
 import { getMovieImages } from "../../api/tmdb-api"
 import { useQuery } from "react-query"
 import Spinner from "../spinner"
+import Carousel from 'react-material-ui-carousel'
+import { Card, CardMedia } from '@mui/material'
 
 const TemplateMoviePage = ({ movie, children }) => {
     const { data, error, isLoading, isError } = useQuery(
@@ -26,7 +28,7 @@ const TemplateMoviePage = ({ movie, children }) => {
           <MovieHeader movie={movie} />
     
           <Grid container spacing={5} sx={{ padding: "15px" }}>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
               <div sx={{
                 display: "flex",
                 flexWrap: "wrap",
@@ -44,9 +46,27 @@ const TemplateMoviePage = ({ movie, children }) => {
                     ))}
                 </ImageList>
               </div>
+            </Grid> */}
+            <Grid item xs={4}>
+              <Carousel>
+              { images.map( (image) => 
+                <Card>
+                  <CardMedia
+                      component="img"
+                      image={'https://image.tmdb.org/t/p/w500/' + image.file_path}
+                      alt={image.poster_path}
+                      height="500"
+                      title={image.file_path}
+                      style={{
+                          objectFit: "contain" 
+                      }}
+                  />
+                </Card>
+              ) }
+              </Carousel>
             </Grid>
     
-            <Grid item xs={9}>
+            <Grid item xs={8}>
               {children}
             </Grid>
           </Grid>
