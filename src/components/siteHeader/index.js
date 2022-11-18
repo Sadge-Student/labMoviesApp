@@ -134,6 +134,7 @@ const SiteHeader = ({ history }) => {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleClick}
+                        color="inherit"
                         >
                         {currentUser.email}
                         </Button>
