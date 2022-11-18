@@ -5,22 +5,22 @@ import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-    const [favourites, setFavourites] = useState ( [] )
-    const [myReviews, setMyReviews] = useState ( {} )
-    const [mustWatch, setMustWatch] = useState ( [] )
+    const [favourites, setFavourites] = useState([]);
+    const [myReviews, setMyReviews] = useState({});
+    const [mustWatch, setMustWatch] = useState([]);
 
-    useEffect(() => {
-        const q = query(collection(db, 'favourites'));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            let favouritesArr = []
-            querySnapshot.forEach((doc) => {
-                favouritesArr.push({...doc.data(), id: doc.id});
-            });
-            setFavourites(favouritesArr);
-            // console.log(favouritesArr);
-        });
-        return () => unsubscribe();
-    }, []);
+    // useEffect(() => {
+    //     const q = query(collection(db, 'favourites'));
+    //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    //         let favouritesArr = []
+    //         querySnapshot.forEach((doc) => {
+    //             favouritesArr.push({...doc.data(), id: doc.id});
+    //         });
+    //         dbSetFavourites(favouritesArr);
+    //         // console.log(favouritesArr);
+    //     });
+    //     return () => unsubscribe();
+    // }, []);
 
     const addFavouriteSync = async(movieId) => {
         console.log("attempting to add " + movieId + " to firebase");
@@ -29,15 +29,10 @@ const MoviesContextProvider = (props) => {
         });
     };
 
-    const addToFavourites = (movie) => {
-        let newFavourites = [...favourites];
-        
+    const addToFavourites = (movie) => {        
         if (!favourites.includes(movie.id)) {
-            newFavourites.push(movie.id);
+            addFavouriteSync(movie.id);
         }
-        setFavourites(newFavourites);
-        console.log(movie);
-        addFavouriteSync(movie.id);
     };
 
     const removeFromFavourites = (movie) => {
