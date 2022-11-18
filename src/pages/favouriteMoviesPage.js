@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import PageTemplate from "../components/templateMovieListPage"
 import { MoviesContext } from "../contexts/moviesContext"
 import { useQueries } from "react-query"
@@ -6,14 +6,31 @@ import { getMovie } from "../api/tmdb-api"
 import Spinner from "../components/spinner"
 import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites"
 import WriteReview from "../components/cardIcons/writeReview"
+import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const FavouriteMoviesPage = () => {
-    const {favourites: movieIds} = useContext(MoviesContext);
+    const [favourites, setFavourites] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const q = query(collection(db, 'favourites'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            let favouritesArr = []
+            querySnapshot.forEach((doc) => {
+                // favouritesArr.push({...doc.data(), id: doc.id});
+                favouritesArr.push({...doc.data()});
+            });
+            setFavourites(favouritesArr);
+        });
+        setLoading(false);
+        return () => unsubscribe();
+    }, []);
 
     const favouriteMovieQueries = useQueries(
-        movieIds.map((movieId) => {
+        favourites.map((movieId) => {
             return {
-                queryKey: ["movie", { id: movieId }],
+                queryKey: ["movie", { id: Object.values(movieId) }],
                 queryFn: getMovie,
             };
         })
@@ -32,7 +49,9 @@ const FavouriteMoviesPage = () => {
     const toDo = () => true;
 
     return (
-        <PageTemplate
+        <>
+        {!loading && 
+            <PageTemplate
             title="Favourite Movies"
             movies={movies}
             action={(movie) => {
@@ -42,8 +61,10 @@ const FavouriteMoviesPage = () => {
                         <WriteReview movie={movie} />
                     </>
                 )
-            }}
-        />
+                }}
+            />
+        }
+        </>
     );
 };
 export default FavouriteMoviesPage;
