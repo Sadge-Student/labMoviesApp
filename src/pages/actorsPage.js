@@ -1,12 +1,12 @@
 import React from "react"
 import PageTemplate from "../components/templateActorsPage"
-import {getMovies, getPopularActors} from "../api/tmdb-api"
+import { getPopularActors } from "../api/tmdb-api"
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner"
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import AddToFavouritesIcon from "../components/cardIcons/addToActorFavourites";
 
 const PopularActorsPage = (props) => {
-  const { data, error, isLoading, isError } = useQuery('popular', getPopularActors)
+  const { data, error, isLoading, isError } = useQuery('popularActors',() => getPopularActors(1))
 
   if (isLoading)
     return <Spinner />;
@@ -15,18 +15,21 @@ const PopularActorsPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const actors = data.results;
-//   const favourites = movies.filter(m => m.favourite)
-//   localStorage.setItem('favourites', JSON.stringify(favourites))
-//   const addToFavourites = (movidId) => true
+  const favourites = actors.filter(m => m.favourite)
+  console.log(favourites)
+  localStorage.setItem('Actorfavourites', JSON.stringify(favourites))
+  const addToFavourites = (actorId) => true
 
   return (
-    <PageTemplate
+    <>
+    {!isLoading && <PageTemplate
       title="Most Popular Actors"
       actors={actors}
       action={(actor) => {
-        // return <AddToFavouritesIcon movie={movie} />
+        return <AddToFavouritesIcon actor={actor} />
       }}
-    />
+    />}
+    </>
   );
 };
 export default PopularActorsPage;
