@@ -6,7 +6,7 @@ import Spinner from "../components/spinner";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
 const HomePage = (props) => {
-  const { data, error, isLoading, isError } = useQuery('discover', getMovies);
+  const { data, error, isLoading, isError } = useQuery('discover',() => getMovies(1));
 
   if (isLoading)
     return <Spinner />;
@@ -21,13 +21,16 @@ const HomePage = (props) => {
   const addToFavourites = (movieId) => true
 
   return(
-      <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavouritesIcon movie={movie} />
-      }}
-    />
+    <>
+       {!isLoading && <PageTemplate
+          title="Discover Movies"
+          movies={movies}
+          action={(movie) => {
+            return <AddToFavouritesIcon movie={movie} />
+        }}
+      />
+      }
+    </>
   );
 };
 export default HomePage;
