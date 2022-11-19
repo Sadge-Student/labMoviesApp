@@ -52,7 +52,9 @@ const SiteHeader = ({ history }) => {
         { label: "Home", path: "/" },
         { label: "Favourites", path: "/movies/favourites" },
         { label: "Upcoming", path: "/movies/upcoming" },
-        { label: "Option 4", path: "/" },
+        { label: "Popular", path: "/movies/popular" },
+        { label: "Top Rated", path: "/movies/rated" },
+        { label: "Actors", path: "/actors/" },
     ];
 
     const handleMenuSelect = (pageURL) => {
