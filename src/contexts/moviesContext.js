@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
+import { useAuth } from "./authContext";
 
 export const MoviesContext = React.createContext(null);
 
@@ -8,6 +9,7 @@ const MoviesContextProvider = (props) => {
     const [favourites, setFavourites] = useState([]);
     const [myReviews, setMyReviews] = useState({});
     const [mustWatch, setMustWatch] = useState([]);
+    const { signin, currentUser } = useAuth();
 
     // useEffect(() => {
     //     const q = query(collection(db, 'favourites'));
@@ -24,7 +26,7 @@ const MoviesContextProvider = (props) => {
 
     const addFavouriteSync = async(movieId) => {
         console.log("attempting to add " + movieId + " to firebase");
-        await addDoc(collection(db, 'favourites'), {
+        await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
             text: movieId
         });
     };
