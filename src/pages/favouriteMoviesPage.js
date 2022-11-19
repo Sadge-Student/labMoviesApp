@@ -8,13 +8,15 @@ import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites"
 import WriteReview from "../components/cardIcons/writeReview"
 import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuth } from "../contexts/authContext"
 
 const FavouriteMoviesPage = () => {
     const [favourites, setFavourites] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { signin, currentUser } = useAuth();
 
     useEffect(() => {
-        const q = query(collection(db, 'favourites'));
+        const q = query(collection(db, `${currentUser.uid}/favourites/favourite`));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             let favouritesArr = []
             querySnapshot.forEach((doc) => {
