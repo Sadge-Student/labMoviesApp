@@ -11,7 +11,7 @@ function ActorListPageTemplate( { actors, title, action }) {
             <Grid item xs={12}>
                 <Header title={title} />
             </Grid>
-            <ActorList actors={actors} action={action}></ActorList>
+            <ActorList action={action} actors={actors}></ActorList>
         </Grid>
     )
 }
