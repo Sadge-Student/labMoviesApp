@@ -17,6 +17,9 @@ import LoginPage from "./pages/loginPage"
 import { AuthProvider } from "./contexts/authContext"
 import { ToggleColorMode, ThemeToggle} from "./components/themeToggle";
 import PrivateRoute from "./components/privateRoute"
+import PopularMoviesPage from "./pages/popularMoviesPage"
+import RatedMoviesPage from "./pages/ratedMoviesPage"
+import PopularActorsPage from "./pages/actorsPage"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +48,9 @@ const App = () => {
                       <Route path="/movies/:id" element={<MoviePage />} />
                       <Route exact path="/movies/favourites" element={<FavouriteMoviesPage />} />
                       <Route exact path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+                      <Route exact path="/movies/popular" element={<PopularMoviesPage />} />
+                      <Route exact path="/movies/rated" element={<RatedMoviesPage />} />
+                      <Route exact path="/actors/" element={<PopularActorsPage />} />
                     </Route>
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/login" element={<LoginPage />} />
