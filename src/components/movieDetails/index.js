@@ -48,16 +48,18 @@ const MovieDetails = ({ movie }) => {
         ))}
       </Paper>
       <Paper component="ul" sx={root}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} sx={chip}/>
         <Chip
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
+          sx={chip}
         />
         <Chip
           icon={<StarRate />}
           label={`${movie.vote_average} (${movie.vote_count}`}
+          sx={chip}
         />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <Chip label={`Released: ${movie.release_date}`} sx={chip}/>
       </Paper>
       <Paper 
         component="ul" 
