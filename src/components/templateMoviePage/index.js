@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react"
-import MovieHeader from "../headerMovie"
-import Grid from "@mui/material/Grid"
-import ImageList from "@mui/material/ImageList"
-import ImageListItem from "@mui/material/ImageListItem"
-import { getMovieImages } from "../../api/tmdb-api"
-import { useQuery } from "react-query"
-import Spinner from "../spinner"
-import Carousel from 'react-material-ui-carousel'
-import { Card, CardMedia } from '@mui/material'
+import React from "react";
+import MovieHeader from "../headerMovie";
+import { getMovieImages } from "../../api/tmdb-api";
+import { useQuery } from "react-query";
+import Spinner from "../spinner";
+import Carousel from "react-material-ui-carousel";
+import Grid from "@mui/material/Grid";
+import { Card, CardMedia } from "@mui/material"
 
 const TemplateMoviePage = ({ movie, children }) => {
     const { data, error, isLoading, isError } = useQuery(
@@ -28,25 +26,6 @@ const TemplateMoviePage = ({ movie, children }) => {
           <MovieHeader movie={movie} />
     
           <Grid container spacing={5} sx={{ padding: "15px" }}>
-            {/* <Grid item xs={3}>
-              <div sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-around",
-              }}>
-                <ImageList 
-                    cols={1}>
-                    {images.map((image) => (
-                        <ImageListItem key={image.file_path} cols={1}>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                            alt={image.poster_path}
-                        />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
-              </div>
-            </Grid> */}
             <Grid item xs={4}>
               <Carousel>
               { images.map( (image) => 
