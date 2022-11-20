@@ -10,7 +10,7 @@ const ActorsContextProvider = (props) => {
     const { signin, currentUser } = useAuth();
 
     const addFavouriteSync = async(actorId) => {
-        console.log("attempting to add " + actorId + " to firebase");
+        // console.log("attempting to add " + actorId + " to firebase");
         await addDoc(collection(db, `${currentUser.uid}/favourites/favouriteActors`), {
             text: actorId
         });

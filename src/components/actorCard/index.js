@@ -15,7 +15,7 @@ import Tooltip from "@mui/material/Tooltip";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
 export default function ActorCard({actor, action}) {
-    console.log(actor);
+    // console.log(actor);
     const { favourites, addToFavourites } = useContext(ActorsContext);
 
     if (favourites.find((id) => id === actor.id)) {

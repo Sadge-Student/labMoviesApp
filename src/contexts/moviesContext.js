@@ -25,7 +25,7 @@ const MoviesContextProvider = (props) => {
     // }, []);
 
     const addFavouriteSync = async(movieId) => {
-        console.log("attempting to add " + movieId + " to firebase");
+        // console.log("attempting to add " + movieId + " to firebase");
         await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
             text: movieId
         });

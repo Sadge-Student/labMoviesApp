@@ -45,15 +45,15 @@ export default function SignIn() {
         await signin(data.get('email'), data.get('password'));
         navigate("/");
       } catch(e) {
-        console.log(e);
+        // console.log(e);
         setError("Login Failed.");
       };
       setLoading(false);
 
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
   return (

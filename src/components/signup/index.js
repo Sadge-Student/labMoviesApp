@@ -47,16 +47,16 @@ function Copyright(props) {
         await signup(data.get('email'), data.get('password'));
         navigate("/");
       } catch(e) {
-        console.log(e);
+        // console.log(e);
         setError("Account creation failed");
       };
       setLoading(false);
 
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        confirmPassword: data.get('password-confirm'),
-      });
+      // console.log({
+      //   email: data.get('email'),
+      //   password: data.get('password'),
+      //   confirmPassword: data.get('password-confirm'),
+      // });
     };
   
     return (

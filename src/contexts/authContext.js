@@ -36,7 +36,7 @@ export function AuthProvider( {children } ) {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (!user) {
-                console.log("No user logged in");
+                // console.log("No user logged in");
             } else {
                 setCurrentUser(user);
                 // const favourites = ["test1", "test2", "test3"];
