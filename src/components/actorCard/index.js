@@ -13,6 +13,8 @@ import Avatar from "@mui/material/Avatar"
 import Grid from "@mui/material/Grid"
 import Tooltip from "@mui/material/Tooltip";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import Button from "@mui/material/Button"
+import CardActions from "@mui/material/CardActions"
 
 export default function ActorCard({actor, action}) {
     // console.log(actor);
@@ -87,6 +89,14 @@ export default function ActorCard({actor, action}) {
                         </Grid>
                     </Grid>
                     </CardContent>
+                    <CardActions disableSpacing>
+                    {action(actor)}
+                    <Link to={`/actors/${actor.id}`} style={{ textDecoration: 'none' }}>
+                    <Button variant="outlined" size="medium" color="primary">
+                        More Info ...
+                    </Button>
+                    </Link>
+                </CardActions>
         </Card>
     )
 }
