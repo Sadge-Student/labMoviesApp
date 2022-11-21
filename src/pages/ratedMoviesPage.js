@@ -21,7 +21,7 @@ const RatedMoviesPage = (props) => {
 
   return (
     <PageTemplate
-      title="Upcoming Movies"
+      title="Top Rated Movies"
       movies={movies}
       action={(movie) => {
         return <AddToFavouritesIcon movie={movie} />
