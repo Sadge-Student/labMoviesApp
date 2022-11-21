@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
+import { query, collection, onSnapshot, updateDoc, doc, addDoc, deleteDoc, QuerySnapshot} from "firebase/firestore";
 import { useAuth } from "./authContext";
 
 export const MoviesContext = React.createContext(null);
@@ -18,7 +18,7 @@ const MoviesContextProvider = (props) => {
     //         querySnapshot.forEach((doc) => {
     //             favouritesArr.push({...doc.data(), id: doc.id});
     //         });
-    //         dbSetFavourites(favouritesArr);
+    //         setFavourites(favouritesArr);
     //         // console.log(favouritesArr);
     //     });
     //     return () => unsubscribe();
@@ -26,31 +26,93 @@ const MoviesContextProvider = (props) => {
 
     const addFavouriteSync = async(movieId) => {
         // console.log("attempting to add " + movieId + " to firebase");
-        await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
+        // await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
+        //     text: movieId
+        // });
+        var exists = false;
+        await db.collection(`${currentUser.uid}/favourites/favourite`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+            let data = String(Object.values(doc.data()));
+            let id = String(movieId);
+            if (id === data) {
+                exists = true;
+                return;
+            }
+            });
+            return;
+        })
+        if (exists) {
+            console.log("This already exists");
+        } else {
+            await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
+                text: movieId
+            });
+        }
+    };
+
+    const addMustWatchSync = async(movieId) => {
+        // console.log("attempting to add " + movieId + " to firebase");
+        await addDoc(collection(db, `${currentUser.uid}/mustWatch/watch`), {
             text: movieId
         });
     };
 
-    const addToFavourites = (movie) => {        
-        if (!favourites.includes(movie.id)) {
-            addFavouriteSync(movie.id);
-        }
+    const removeFavouriteSync = async(movieId) => {
+        db.collection(`${currentUser.uid}/favourites/favourite`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // console.log(doc.id, ' => ', doc.data());
+                // console.log(Object.values(doc.data()))
+                if (movieId == Object.values(doc.data())) {
+                    // console.log("match found!");
+                    handleRemoveFavouriteSync(doc.id);
+                }
+            });
+        });
+    }
+
+    // function test(movieId) {
+    //     db.collection(`${currentUser.uid}/favourites/favourite`).get().then(function (querySnapshot) {
+    //         querySnapshot.forEach(function(doc) {
+    //             // console.log(doc.id, ' => ', doc.data());
+    //             // console.log(Object.values(doc.data()))
+    //             let data = String(Object.values(doc.data()));
+    //             let id = String(movieId);
+    //             // console.log("Movie ID:" + movieId);
+    //             // console.log(Object.values(doc.data()));
+    //             // console.log(movieId + "vs" + data);
+    //             // console.log(id === data);
+    //             // console.log(id.equals(data));
+    //             // console.log(typeof data);
+    //             // console.log(typeof movieId);
+                
+    //             if (id === data) {
+    //                 setExists(true);
+    //                 // handleRemoveFavouriteSync(doc.id);
+    //             }
+    //         });
+    //     });
+    // }
+
+    async function handleRemoveFavouriteSync(docId) {
+        const res = await db.collection(`${currentUser.uid}/favourites/favourite`).doc(docId).delete();
+        return res;
+    }
+
+    const addToFavourites = (movie) => {   
+        addFavouriteSync(movie.id);
     };
 
     const removeFromFavourites = (movie) => {
-        setFavourites(favourites.filter(
-            (mId) => mId !== movie.id
-        ))
+        // setFavourites(favourites.filter(
+        //     (mId) => mId !== movie.id
+        // ));
+        removeFavouriteSync(movie.id);
     };
 
     const addToMustWatch = (movie) => {
-        let newMustWatch = [...mustWatch];
-
         if (!mustWatch.includes(movie.id)) {
-            newMustWatch.push(movie.id);
+            addMustWatchSync(movie.id);
         }
-        setMustWatch(newMustWatch);
-        console.table(newMustWatch);
     }
 
     const addReview = (movie, review) => {
