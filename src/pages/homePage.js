@@ -4,6 +4,7 @@ import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import AddToMustWatch from "../components/cardIcons/addToMustWatch"
 
 const HomePage = (props) => {
   const { data, error, isLoading, isError } = useQuery('discover',() => getMovies(1));
@@ -26,7 +27,12 @@ const HomePage = (props) => {
           title="Discover Movies"
           movies={movies}
           action={(movie) => {
-            return <AddToFavouritesIcon movie={movie} />
+            return (
+            <>
+              <AddToFavouritesIcon movie={movie} />
+              <AddToMustWatch movie={movie} />
+            </>
+            );
         }}
       />
       }
