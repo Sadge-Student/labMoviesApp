@@ -4,7 +4,7 @@ import { MoviesContext } from "../contexts/moviesContext"
 import { useQueries } from "react-query"
 import { getMovie } from "../api/tmdb-api"
 import Spinner from "../components/spinner"
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites"
+import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch"
 import WriteReview from "../components/cardIcons/writeReview"
 import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -57,6 +57,7 @@ const MustWatchPage = () => {
             action={(movie) => {
                 return (
                     <>
+                        <RemoveFromMustWatch movie={movie} />
                         <WriteReview movie={movie} />
                     </>
                 )
