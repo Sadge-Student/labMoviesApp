@@ -1,11 +1,11 @@
 import React from "react";
-import MovieHeader from "../headerMovie";
-import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
-import Spinner from "../spinner";
+import { getMovieImages } from "../../api/tmdb-api";
 import Carousel from "react-material-ui-carousel";
 import Grid from "@mui/material/Grid";
-import { Card, CardMedia } from "@mui/material"
+import { Card, CardMedia } from "@mui/material";
+import MovieHeader from "../headerMovie";
+import Spinner from "../spinner";
 
 const TemplateMoviePage = ({ movie, children }) => {
     const { data, error, isLoading, isError } = useQuery(

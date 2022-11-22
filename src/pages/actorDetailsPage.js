@@ -1,10 +1,10 @@
-import React from "react"
-import { useParams } from 'react-router-dom'
-import ActorDetails from "../components/actorDetails/"
-import PageTemplate from "../components/templateActorPage"
-import { getActor } from "../api/tmdb-api"
-import { useQuery } from "react-query"
-import Spinner from "../components/spinner"
+import React from "react";
+import { useQuery } from "react-query";
+import { useParams } from 'react-router-dom';
+import { getActor } from "../api/tmdb-api";
+import PageTemplate from "../components/templateActorPage";
+import ActorDetails from "../components/actorDetails";
+import Spinner from "../components/spinner";
 
 const ActorDetailsPage = (props) => {
   const { id } = useParams();
@@ -13,7 +13,6 @@ const ActorDetailsPage = (props) => {
     ["actor", { id: id}],
     getActor
   );
-  console.log(actor);
 
   if (isLoading)
     return <Spinner />;

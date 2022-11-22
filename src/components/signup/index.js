@@ -1,4 +1,6 @@
 import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,8 +13,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import { useAuth } from "../../contexts/authContext";
-import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -47,21 +47,13 @@ function Copyright(props) {
         await signup(data.get('email'), data.get('password'));
         navigate("/");
       } catch(e) {
-        // console.log(e);
         setError("Account creation failed");
       };
       setLoading(false);
-
-      // console.log({
-      //   email: data.get('email'),
-      //   password: data.get('password'),
-      //   confirmPassword: data.get('password-confirm'),
-      // });
     };
   
     return (
         <Container component="main" maxWidth="xs">
-            {/* {JSON.stringify(currentUser)} */}
           <CssBaseline />
           <Box
             sx={{

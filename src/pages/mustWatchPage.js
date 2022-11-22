@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react"
-import PageTemplate from "../components/templateMovieListPage"
-import { MoviesContext } from "../contexts/moviesContext"
-import { useQueries } from "react-query"
-import { getMovie } from "../api/tmdb-api"
-import Spinner from "../components/spinner"
-import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch"
-import WriteReview from "../components/cardIcons/writeReview"
-import { query, collection, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useQueries } from "react-query";
+import { getMovie } from "../api/tmdb-api";
+import { query, collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
-import { useAuth } from "../contexts/authContext"
+import { useAuth } from "../contexts/authContext";
+import PageTemplate from "../components/templateMovieListPage";
+import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch";
+import WriteReview from "../components/cardIcons/writeReview";
+import Spinner from "../components/spinner";
 
 const MustWatchPage = () => {
     const [mustWatch, setMustWatch] = useState([]);
@@ -20,7 +19,6 @@ const MustWatchPage = () => {
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             let mustWatchArr = []
             querySnapshot.forEach((doc) => {
-                // favouritesArr.push({...doc.data(), id: doc.id});
                 mustWatchArr.push({...doc.data()});
             });
             setMustWatch(mustWatchArr);
@@ -44,8 +42,8 @@ const MustWatchPage = () => {
         return <Spinner />;
 
     const movies = mustWatchMovieQueries.map((q) => {
-        q.data.genre_ids = q.data.genres.map(g => g.id)
-        return q.data
+        q.data.genre_ids = q.data.genres.map(g => g.id);
+        return q.data;
     });
 
     return (
@@ -60,7 +58,7 @@ const MustWatchPage = () => {
                         <RemoveFromMustWatch movie={movie} />
                         <WriteReview movie={movie} />
                     </>
-                )
+                );
                 }}
             />
         }

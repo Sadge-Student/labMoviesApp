@@ -1,23 +1,22 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ActorsContext } from "../../contexts/actorsContext";
+import img from "../../images/film-poster-placeholder.png";
+import Tilt from "react-parallax-tilt";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent"
-import CardMedia from "@mui/material/CardMedia"
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import img from '../../images/film-poster-placeholder.png'
-import Tilt from "react-parallax-tilt";
-import { ActorsContext } from "../../contexts/actorsContext";
-import FavoriteIcon from "@mui/icons-material/Favorite"
-import Avatar from "@mui/material/Avatar"
-import Grid from "@mui/material/Grid"
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import Button from "@mui/material/Button"
-import CardActions from "@mui/material/CardActions"
+import Button from "@mui/material/Button";
+import CardActions from "@mui/material/CardActions";
 
 export default function ActorCard({actor, action}) {
-    // console.log(actor);
     const { favourites, addToFavourites } = useContext(ActorsContext);
 
     if (favourites.find((id) => id === actor.id)) {
@@ -98,5 +97,5 @@ export default function ActorCard({actor, action}) {
                     </Link>
                 </CardActions>
         </Card>
-    )
-}
+    );
+};

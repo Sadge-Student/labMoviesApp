@@ -1,28 +1,28 @@
-import React from "react"
-import {createRoot} from "react-dom/client"
-import { QueryClientProvider, QueryClient } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import MoviesContextProvider from "./contexts/moviesContext"
-import ActorsContextProvider from "./contexts/actorsContext"
-import HomePage from "./pages/homePage"
-import MoviePage from "./pages/movieDetailsPage"
-import FavouriteMoviesPage from "./pages/favouriteMoviesPage"
-import MovieReviewPage from "./pages/movieReviewPage"
-import SiteHeader from "./components/siteHeader"
-import UpcomingMoviesPage from "./pages/upcomingMoviesPage"
-import AddMovieReviewPage from "./pages/addMovieReviewPage"
-import SignUpPage from "./pages/signupPage"
-import LoginPage from "./pages/loginPage"
-import { AuthProvider } from "./contexts/authContext"
-import { ToggleColorMode, ThemeToggle} from "./components/themeToggle";
-import PrivateRoute from "./components/privateRoute"
-import PopularMoviesPage from "./pages/popularMoviesPage"
-import RatedMoviesPage from "./pages/ratedMoviesPage"
-import PopularActorsPage from "./pages/actorsPage"
-import ActorDetailsPage from "./pages/actorDetailsPage"
-import MustWatchPage from "./pages/mustWatchPage"
+import React from "react";
+import {createRoot} from "react-dom/client";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import MoviesContextProvider from "./contexts/moviesContext";
+import ActorsContextProvider from "./contexts/actorsContext";
+import { AuthProvider } from "./contexts/authContext";
+import SiteHeader from "./components/siteHeader";
+import { ToggleColorMode} from "./components/themeToggle";
+import PrivateRoute from "./components/privateRoute";
+import HomePage from "./pages/homePage";
+import MoviePage from "./pages/movieDetailsPage";
+import FavouriteMoviesPage from "./pages/favouriteMoviesPage";
+import MovieReviewPage from "./pages/movieReviewPage";
+import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
+import AddMovieReviewPage from "./pages/addMovieReviewPage";
+import PopularMoviesPage from "./pages/popularMoviesPage";
+import RatedMoviesPage from "./pages/ratedMoviesPage";
+import PopularActorsPage from "./pages/actorsPage";
+import ActorDetailsPage from "./pages/actorDetailsPage";
+import MustWatchPage from "./pages/mustWatchPage";
 import FavouriteActorsPage from "./pages/favouriteActorsPage";
+import SignUpPage from "./pages/signupPage";
+import LoginPage from "./pages/loginPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,5 +71,5 @@ const App = () => {
     );
 };
 
-const rootElement = createRoot(document.getElementById("root"))
-rootElement.render(<App />)
+const rootElement = createRoot(document.getElementById("root"));
+rootElement.render(<App />);

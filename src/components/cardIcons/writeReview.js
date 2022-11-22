@@ -1,6 +1,6 @@
-import React from "react"
-import RateReviewIcon from "@mui/icons-material/RateReview"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import RateReviewIcon from "@mui/icons-material/RateReview";
 
 const WriteReviewIcon = ({ movie }) => {
     return (

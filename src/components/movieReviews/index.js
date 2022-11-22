@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableHead"
-import TableHead from "@mui/material/TableHead"
-import TableRow from "@mui/material/TableRow"
-import Paper from "@mui/material/Paper"
-import { Link } from "react-router-dom"
-import { getMovieReviews } from "../../api/tmdb-api"
-import { excerpt } from "../../util"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getMovieReviews } from "../../api/tmdb-api";
+import { excerpt } from "../../util";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableHead";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 export default function MovieReviews({ movie }) {
     const [reviews, setReviews] = useState([]);

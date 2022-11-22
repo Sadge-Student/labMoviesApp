@@ -1,15 +1,14 @@
-import React, { useState } from "react"
-import Header from "../headerMovieList"
-import FilterCard from "../filterMoviesCard"
-import MovieList from "../movieList"
-import Grid from "@mui/material/Grid"
+import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
+import Header from "../headerMovieList";
+import FilterCard from "../filterMoviesCard";
+import MovieList from "../movieList";
 
 function MovieListPageTemplate({ movies, title, action }) {
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
     const genreId = Number(genreFilter);
-    // console.log("movies");
-    // console.log(movies);
+
     let displayedMovies = movies
         .filter((m) => {
             return m.title.toLowerCase().search(nameFilter.toLocaleLowerCase()) !== -1;

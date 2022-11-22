@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react"
-import ActorHeader from "../headerActor"
-import Grid from "@mui/material/Grid"
-import ImageList from "@mui/material/ImageList"
-import ImageListItem from "@mui/material/ImageListItem"
-import { getActorImages } from "../../api/tmdb-api"
-import { useQuery } from "react-query"
-import Spinner from "../spinner"
-import Carousel from 'react-material-ui-carousel'
-import { Card, CardMedia } from '@mui/material'
+import React from "react";
+import { useQuery } from "react-query";
+import { getActorImages } from "../../api/tmdb-api";
+import Grid from "@mui/material/Grid";
+import { Card, CardMedia } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import ActorHeader from "../headerActor";
+import Spinner from "../spinner";
 
 const TemplateActorPage = ({ actor, children }) => {
     const { data, error, isLoading, isError } = useQuery(

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, writeUserDataFavourites } from "../firebase";
+import { auth } from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -24,35 +24,11 @@ export function AuthProvider( {children } ) {
         return auth.signOut();
     }
 
-    // useEffect(() => {
-    //     const unsubscribe = auth.onAuthStateChanged(user => {
-    //         setCurrentUser(user);
-    //         setLoading(false);
-    //     });
-
-    //     return unsubscribe;
-    // }, [])
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (!user) {
-                // console.log("No user logged in");
             } else {
                 setCurrentUser(user);
-                // const favourites = ["test1", "test2", "test3"];
-
-                // writeUserDataFavourites(user.uid, favourites);
-
-                // const userDoc = db.collection("users").doc(user.uid);
-                // const doc = await userDoc.get();
-                
-                // if (doc.exists) {
-                //     setCurrentUserDoc(doc.data());
-                // } else {
-                //     await userDoc.set({
-                //         favourites: ["test1", "test2", "test3"],
-                //     });
-                // }
             }
             setLoading(false);
         });

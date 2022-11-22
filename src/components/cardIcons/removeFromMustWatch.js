@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
-import IconButton from "@mui/material/IconButton"
-import DeleteIcon from "@mui/icons-material/Delete"
-import { MoviesContext } from "../../contexts/moviesContext"
+import React, { useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const RemoveFromMustWatchIcon = ({ movie }) => {
     const context = useContext(MoviesContext);

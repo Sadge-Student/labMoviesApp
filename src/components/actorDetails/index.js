@@ -1,21 +1,14 @@
-import React, {useState} from "react"
-import Chip from "@mui/material/Chip"
-import Paper from "@mui/material/Paper"
-import CakeIcon from "@mui/icons-material/Cake";
-import MonetizationIcon from "@mui/icons-material/MonetizationOn"
-import StarRate from "@mui/icons-material/StarRate"
-import NavigationIcon from "@mui/icons-material/Navigation"
+import React from "react";
+import Chip from "@mui/material/Chip";
+import Paper from "@mui/material/Paper";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import WorkIcon from '@mui/icons-material/Work';
-import Fab from "@mui/material/Fab"
 import Typography from "@mui/material/Typography"
 import Tooltip from "@mui/material/Tooltip";
-import Drawer from "@mui/material/Drawer"
-import MovieReviews from "../movieReviews"
-import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import CakeIcon from "@mui/icons-material/Cake";
+import WorkIcon from '@mui/icons-material/Work';
 import LinkIcon from "@mui/icons-material/Link";
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 
 const root = {
@@ -43,7 +36,7 @@ const ActorDetails = ({ actor }) => {
 
   return (
     <>
-        <Typography variant="h5" component="h5">
+      <Typography variant="h5" component="h5">
         Overview
       </Typography>
       <Paper component="ul" sx={root}>
@@ -67,7 +60,7 @@ const ActorDetails = ({ actor }) => {
       <Typography sx={{ fontSize: 18, m: 1 }} variant="subtitle1" gutterBottom>
         Links
       </Typography>
-        <a target="_blank" href={`https://www.imdb.com/name/${actor.imdb_id}`} style={{textDecoration: 'none'}}>
+        <a target="_blank" rel="noreferrer" href={`https://www.imdb.com/name/${actor.imdb_id}`} style={{textDecoration: 'none'}}>
           <Button variant="contained" endIcon={<LinkIcon />}>IMDB</Button>
         </a>
       </Paper>

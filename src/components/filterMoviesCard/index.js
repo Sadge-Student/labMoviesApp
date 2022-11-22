@@ -1,18 +1,18 @@
-import React from "react"
-import Card from "@mui/material/Card"
-import CardMedia from "@mui/material/CardMedia"
-import CardContent from "@mui/material/CardContent"
-import Typography from "@mui/material/Typography"
-import InputLabel from "@mui/material/InputLabel"
-import MenuItem from "@mui/material/MenuItem"
-import TextField from "@mui/material/TextField"
-import SearchIcon from "@mui/icons-material/Search"
-import FormControl from "@mui/material/FormControl"
-import Select from "@mui/material/Select"
-import img from '../../images/18-result.png'
-import { getGenres } from "../../api/tmdb-api"
-import { useQuery } from "react-query"
-import Spinner from "../spinner"
+import React from "react";
+import { useQuery } from "react-query";
+import { getGenres } from "../../api/tmdb-api";
+import img from "../../images/18-result.png";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Spinner from "../spinner";
 
 const formControl = 
   {

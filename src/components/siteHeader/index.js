@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
 import AppBar from "@mui/material/AppBar";
 import ToolBar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -7,13 +9,11 @@ import Button from "@mui/material/Button";
 import MenuIcon from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { ThemeToggle} from "../themeToggle";
-import { useAuth } from "../../contexts/authContext";
 
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);

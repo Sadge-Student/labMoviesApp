@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import PageTemplate from "../components/templateActorsPage";
 import { useQueries } from "react-query";
 import { getActor } from "../api/tmdb-api";
-import Spinner from "../components/spinner";
 import { query, collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../contexts/authContext";
+import PageTemplate from "../components/templateActorsPage";
 import RemoveFromFavouriteActor from "../components/cardIcons/removeFromFavouriteActor";
+import Spinner from "../components/spinner";
 
 const FavouriteActorsPage = () => {
     const [favourites, setFavourites] = useState([]);
@@ -42,26 +42,25 @@ const FavouriteActorsPage = () => {
     }
 
     const actors = favouriteActorQueries.map((q) => {
-        // console.log(q.data);
         return q.data;
     }) 
 
     return (
         <>
-        {!loading && 
-        <PageTemplate
-        title="Favourite Actors"
-        actors={actors}
-        action={(actor) => {
-            return (
-                <>
-                    <RemoveFromFavouriteActor actor={actor} />
-                </>
-            )
-        }}
-        />
-        }
+            {!loading && 
+                <PageTemplate
+                    title="Favourite Actors"
+                    actors={actors}
+                    action={(actor) => {
+                        return (
+                            <>
+                                <RemoveFromFavouriteActor actor={actor} />
+                            </>
+                        )
+                    }}
+                />
+            }
         </>
-    )
+    );
 };
 export default FavouriteActorsPage;

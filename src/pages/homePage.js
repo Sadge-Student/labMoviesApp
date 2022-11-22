@@ -1,10 +1,10 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { getMovies } from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
-import { useQuery } from "react-query";
-import Spinner from "../components/spinner";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
-import AddToMustWatch from "../components/cardIcons/addToMustWatch"
+import AddToMustWatch from "../components/cardIcons/addToMustWatch";
+import Spinner from "../components/spinner";
 
 const HomePage = (props) => {
   const { data, error, isLoading, isError } = useQuery('discover',() => getMovies(1));
@@ -33,7 +33,7 @@ const HomePage = (props) => {
               <AddToMustWatch movie={movie} />
             </>
             );
-        }}
+          }}
       />
       }
     </>

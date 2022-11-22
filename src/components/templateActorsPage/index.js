@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
 import Header from "../headerMovieList";
 import ActorList from "../actorList";
-import Grid from "@mui/material/Grid";
 
 function ActorListPageTemplate( { actors, title, action }) {
     const [nameFilter, setNameFilter] = useState("");

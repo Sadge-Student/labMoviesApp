@@ -22,13 +22,15 @@ const PopularActorsPage = (props) => {
 
   return (
     <>
-    {!isLoading && <PageTemplate
-      title="Most Popular Actors"
-      actors={actors}
-      action={(actor) => {
-        return <AddToFavouritesIcon actor={actor} />
-      }}
-    />}
+      {!isLoading && 
+        <PageTemplate
+          title="Most Popular Actors"
+          actors={actors}
+          action={(actor) => {
+            return <AddToFavouritesIcon actor={actor} />
+          }}
+        />
+      }
     </>
   );
 };

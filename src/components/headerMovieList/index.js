@@ -1,13 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
 
 const Header = (props ) => {
-  const title = props.title
+  const title = props.title;
   const navigate = useNavigate();
   return (
     <Paper 

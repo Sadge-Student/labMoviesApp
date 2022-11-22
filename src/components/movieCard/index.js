@@ -1,20 +1,20 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import Avatar from "@mui/material/Avatar"
-import Card from "@mui/material/Card"
-import CardActions from "@mui/material/CardActions"
-import CardContent from "@mui/material/CardContent"
-import CardMedia from "@mui/material/CardMedia"
-import CardHeader from "@mui/material/CardHeader"
-import Button from "@mui/material/Button"
-import Typography from "@mui/material/Typography"
-import FavoriteIcon from "@mui/icons-material/Favorite"
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone"
-import StarRateIcon from "@mui/icons-material/StarRate"
-import Grid from "@mui/material/Grid"
-import { MoviesContext } from "../../contexts/moviesContext"
-import img from '../../images/film-poster-placeholder.png'
+import { MoviesContext } from "../../contexts/moviesContext";
 import Tilt from "react-parallax-tilt";
+import img from "../../images/film-poster-placeholder.png";
+import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Grid from "@mui/material/Grid";
 
 export default function MovieCard({movie, action}) {
   const { favourites, addToFavourites } = useContext(MoviesContext);
@@ -54,7 +54,6 @@ export default function MovieCard({movie, action}) {
               display: "-webkit-box",
               WebkitLineClamp: "1",
               WebkitBoxOrient: "vertical",
-              // height: "64.3px"
             }}
             >
               {movie.title}{" "}

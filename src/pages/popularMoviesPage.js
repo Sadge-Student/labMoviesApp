@@ -1,12 +1,12 @@
-import React from "react"
-import PageTemplate from "../components/templateMovieListPage"
-import {getMovies, getPopularMovies} from "../api/tmdb-api"
+import React from "react";
 import { useQuery } from "react-query";
-import Spinner from "../components/spinner"
+import { getPopularMovies } from "../api/tmdb-api";
+import PageTemplate from "../components/templateMovieListPage";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import Spinner from "../components/spinner";
 
 const PopularMoviesPage = (props) => {
-  const { data, error, isLoading, isError } = useQuery('popular',() => getPopularMovies(1))
+  const { data, error, isLoading, isError } = useQuery('popular',() => getPopularMovies(1));
 
   if (isLoading)
     return <Spinner />;
@@ -15,8 +15,8 @@ const PopularMoviesPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const movies = data.results;
-  const favourites = movies.filter(m => m.favourite)
-  localStorage.setItem('favourites', JSON.stringify(favourites))
+  const favourites = movies.filter(m => m.favourite);
+  localStorage.setItem('favourites', JSON.stringify(favourites));
   const addToFavourites = (movidId) => true
 
   return (
