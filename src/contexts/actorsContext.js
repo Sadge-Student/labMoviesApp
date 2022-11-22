@@ -11,21 +11,51 @@ const ActorsContextProvider = (props) => {
 
     const addFavouriteSync = async(actorId) => {
         // console.log("attempting to add " + actorId + " to firebase");
-        await addDoc(collection(db, `${currentUser.uid}/favourites/favouriteActors`), {
-            text: actorId
+        // await addDoc(collection(db, `${currentUser.uid}/favourites/actors`), {
+        //     text: actorId
+        // });
+        var exists = false;
+        await db.collection(`${currentUser.uid}/favourites/actors`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let data = String(Object.values(doc.data()));
+                let id = String(actorId);
+                if (id === data) {
+                    exists = true;
+                    return;
+                }
+            });
+            return;
         });
-    };
-
-    const addToFavourites = (actor) => {        
-        if (!favourites.includes(actor.id)) {
-            addFavouriteSync(actor.id);
+        if (exists) {
+            console.log("This actor is already favourited");
+        } else {
+            await addDoc(collection(db, `${currentUser.uid}/favourites/actors`), {
+                text: actorId
+            });
         }
     };
 
+    const removeFavouriteSync = async(actorId) => {
+        db.collection(`${currentUser.uid}/favourites/actors`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                if (actorId == Object.values(doc.data())) {
+                    handleRemoveFavouriteSync(doc.id);
+                }
+            })
+        })
+    }
+
+    async function handleRemoveFavouriteSync(docId) {
+        const res = await db.collection(`${currentUser.uid}/favourites/actors`).doc(docId).delete();
+        return res;
+    }
+
+    const addToFavourites = (actor) => {        
+        addFavouriteSync(actor.id);
+    };
+
     const removeFromFavourites = (actor) => {
-        setFavourites(favourites.filter(
-            (aId) => aId !== actor.id
-        ))
+        removeFavouriteSync(actor.id);
     };
 
     return (
