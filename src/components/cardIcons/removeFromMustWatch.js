@@ -6,15 +6,15 @@ import { MoviesContext } from "../../contexts/moviesContext"
 const RemoveFromMustWatchIcon = ({ movie }) => {
     const context = useContext(MoviesContext);
 
-    const handleRemoveFromFavourites = (e) => {
+    const handleRemoveFromMustWatch = (e) => {
         e.preventDefault();
-        context.removeFromFavourites(movie);
+        context.removeFromMustWatch(movie);
     };
 
     return (
         <IconButton
             aria-labelledby="remove from favourites"
-            onClick={handleRemoveFromFavourites}
+            onClick={handleRemoveFromMustWatch}
         >
             <DeleteIcon color="primary" fontSize="large" />
         </IconButton>
