@@ -43,6 +43,7 @@ const SiteHeader = ({ history }) => {
         try {
             await signout();
             navigate('/login');
+            navigate(0);
         } catch {
             setError('Failed to log out.');
         }
@@ -114,6 +115,8 @@ const SiteHeader = ({ history }) => {
                         </>
                     ) : (
                         <>
+                        {currentUser !== null &&
+                        <>
                             {menuOptions.map((opt) => (
                                 <Button
                                     key={opt.label}
@@ -123,6 +126,8 @@ const SiteHeader = ({ history }) => {
                                     {opt.label}
                                 </Button>
                             ))}
+                        </>
+                        }
                         </>
                     )}
                     <ThemeToggle />
