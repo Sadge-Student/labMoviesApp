@@ -52,9 +52,28 @@ const MoviesContextProvider = (props) => {
 
     const addMustWatchSync = async(movieId) => {
         // console.log("attempting to add " + movieId + " to firebase");
-        await addDoc(collection(db, `${currentUser.uid}/mustWatch/watch`), {
-            text: movieId
+        // await addDoc(collection(db, `${currentUser.uid}/mustWatch/watch`), {
+        //     text: movieId
+        // });
+        var exists = false;
+        await db.collection(`${currentUser.uid}/mustWatch/watch`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let data = String(Object.values(doc.data()));
+                let id = String(movieId);
+                if (id === data) {
+                    exists = true;
+                    return;
+                }
+            });
+            return;
         });
+        if (exists) {
+            console.log("This already exists");
+        } else {
+            await addDoc(collection(db, `${currentUser.uid}/mustWatch/watch`), {
+            text: movieId
+            });
+        }
     };
 
     const removeFavouriteSync = async(movieId) => {
@@ -68,6 +87,16 @@ const MoviesContextProvider = (props) => {
                 }
             });
         });
+    }
+
+    const removeMustWatch = async(movieId) => {
+        db.collection(`${currentUser.uid}/mustWatch/watch`).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                if (movieId == Object.values(doc.data())) {
+                    handleRemoveMustWatch(doc.id);
+                }
+            })
+        })
     }
 
     // function test(movieId) {
@@ -98,21 +127,25 @@ const MoviesContextProvider = (props) => {
         return res;
     }
 
+    async function handleRemoveMustWatch(docId) {
+        const res = await db.collection(`${currentUser.uid}/mustWatch/watch`).doc(docId).delete();
+        return res;
+    }
+
     const addToFavourites = (movie) => {   
         addFavouriteSync(movie.id);
     };
 
     const removeFromFavourites = (movie) => {
-        // setFavourites(favourites.filter(
-        //     (mId) => mId !== movie.id
-        // ));
         removeFavouriteSync(movie.id);
     };
 
     const addToMustWatch = (movie) => {
-        if (!mustWatch.includes(movie.id)) {
-            addMustWatchSync(movie.id);
-        }
+        addMustWatchSync(movie.id);
+    }
+
+    const removeFromMustWatch = (movie) => {
+        removeMustWatch(movie.id);
     }
 
     const addReview = (movie, review) => {
@@ -127,6 +160,7 @@ const MoviesContextProvider = (props) => {
                 removeFromFavourites,
                 addReview,
                 addToMustWatch,
+                removeFromMustWatch
             }}
         >
             {props.children}
