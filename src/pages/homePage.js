@@ -50,7 +50,6 @@ const HomePage = (props) => {
                 label="Page Search" 
                 inputProps={{min: 0, style: { textAlign: 'center' }}}
                 variant="standard"
-                style={{margin: '0 10px'}} 
                 onKeyPress={(ev) => {
                   if (ev.key === 'Enter') {
                     if (!isNaN(ev.target.value) && ev.target.value <= 500 && ev.target.value > 0) {
@@ -61,7 +60,7 @@ const HomePage = (props) => {
                 }}
               />
               
-              <Button disabled={currentPage === 500} variant="outlined" endIcon={<NavigateNextIcon />} onClick={() => setCurrentPage(prevValue => prevValue + 1 )}>Next Page</Button>
+              <Button disabled={currentPage === 500} variant="outlined" endIcon={<NavigateNextIcon />} onClick={() => setCurrentPage(prevValue => prevValue + 1 )} style={{margin: '0 10px'}}>Next Page</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -92,7 +91,6 @@ const HomePage = (props) => {
                 label="Page Search" 
                 inputProps={{min: 0, style: { textAlign: 'center' }}}
                 variant="standard"
-                style={{margin: '0 10px'}} 
                 onKeyPress={(ev) => {
                   if (ev.key === 'Enter' && ev.target.value <= 500 && ev.target.value > 0) {
                     if (!isNaN(ev.target.value)) {
@@ -103,7 +101,7 @@ const HomePage = (props) => {
                 }}
               />
               
-              <Button disabled={currentPage === 500} variant="outlined" endIcon={<NavigateNextIcon />} onClick={() => setCurrentPage(prevValue => prevValue + 1 )}>Next Page</Button>
+              <Button disabled={currentPage === 500} variant="outlined" endIcon={<NavigateNextIcon />} onClick={() => setCurrentPage(prevValue => prevValue + 1 )} style={{margin: '0 10px'}}>Next Page</Button>
             </Grid>
           </Grid>
         </Grid>
