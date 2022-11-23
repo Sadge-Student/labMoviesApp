@@ -71,12 +71,18 @@ export default function ActorCard({actor, action}) {
                     </Link>
                     </Tilt>
                     <CardContent>
-                    <Grid container>
+                    <Typography variant="overline" component="p">
+                        Known For
+                    </Typography>
+                    <Grid container style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center'}}>
                         <Grid item xs={8}>
-                        <Typography variant="h6" component="p">
-                            {/* <CalendarIcon fontSize="small" />
-                            {movie.release_date} */}
-                        </Typography>
+                            {actor.known_for.map((kf) => {
+                                return (
+                                    <Typography key={kf.id} variant="subtitle2" component="p">
+                                        {kf.title}
+                                    </Typography>
+                                );
+                            })}
                         </Grid>
                         <Grid item xs={4}>
                         <Typography variant="h6" component="p">
