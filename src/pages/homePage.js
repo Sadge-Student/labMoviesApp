@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { useParams } from 'react-router-dom';
 import { getMovies } from "../api/tmdb-api";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import TextField from "@mui/material/TextField";
 import PageTemplate from "../components/templateMovieListPage";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import AddToMustWatch from "../components/cardIcons/addToMustWatch";
 import Spinner from "../components/spinner";
-import Button from "@mui/material/Button";
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid'
 
 const HomePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,9 +33,9 @@ const HomePage = (props) => {
 
   const movies = data.results;
 
-  const favourites = movies.filter(m => m.favourite)
-  localStorage.setItem('favourites', JSON.stringify(favourites))
-  const addToFavourites = (movieId) => true
+  // const favourites = movies.filter(m => m.favourite)
+  // localStorage.setItem('favourites', JSON.stringify(favourites))
+  // const addToFavourites = (movieId) => true
 
   return(
     <>
