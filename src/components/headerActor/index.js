@@ -29,15 +29,15 @@ const ActorHeader = (props) => {
           <ArrowForwardIcon color="primary" fontSize="large" />
         </IconButton>
   
-        <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', margin: "1rem"}}>
+        <div style={{margin: "1rem 10%"}}>
           <Typography variant="h4" component="h3">
             {actor.name}
-            <br />
-            <Typography variant="h5" gutterBottom>
-                Biography
-            </Typography>
-            <Typography sx={{ fontSize: 12, m: 1 }} variant="subtitle1" gutterBottom>{`"${actor.biography}"`} </Typography>
           </Typography>
+            
+          <Typography variant="h5" component="h5" gutterBottom>
+              Biography
+          </Typography>
+          <Typography sx={{ fontSize: 12, m: 1 }} variant="subtitle1" gutterBottom>{`"${actor.biography}"`} </Typography>
         </div>
       </Paper>
     );
