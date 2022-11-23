@@ -6,9 +6,11 @@ import Typography from "@mui/material/Typography"
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 import CakeIcon from "@mui/icons-material/Cake";
-import WorkIcon from '@mui/icons-material/Work';
+import WorkIcon from "@mui/icons-material/Work";
 import LinkIcon from "@mui/icons-material/Link";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import WomanIcon from "@mui/icons-material/Woman";
+import ManIcon from "@mui/icons-material/Man";
 
 
 const root = {
@@ -41,18 +43,35 @@ const ActorDetails = ({ actor }) => {
       </Typography>
       <Paper component="ul" sx={root}>
         <Tooltip title="Location Born" placement="right-start" arrow>
-            <Chip component="li" icon={<LocationOnIcon />} label={`${actor.place_of_birth}`} sx={chip}/>
+            <Chip component="li" key={actor.id + ' ' + actor.place_of_birth} icon={<LocationOnIcon />} label={`${actor.place_of_birth}`} sx={chip}/>
         </Tooltip>
-        <Tooltip title="Birthday" placement="right-start" arrow>
-            <Chip component="li" icon={<CakeIcon />} label={`${actor.birthday}`} sx={chip}/>
+
+        {actor.gender === 1 && 
+        <>
+          <Tooltip title="Gender" placement="right-start" arrow>
+              <Chip component="li" key={actor.id + ' ' + actor.gender} icon={<WomanIcon />} label={`Female`} sx={chip}/>
+          </Tooltip>
+        </>
+        }
+        {actor.gender === 2 && 
+        <>
+          <Tooltip title="Gender" placement="right-start" arrow>
+              <Chip component="li" key={actor.id + ' ' + actor.gender} icon={<ManIcon />} label={`Male`} sx={chip}/>
+          </Tooltip>
+        </>
+        }
+
+        <Tooltip title="Birth Date" placement="right-start" arrow>
+            <Chip component="li" key={actor.id + ' ' + actor.birthday} icon={<CakeIcon />} label={`${actor.birthday}`} sx={chip}/>
         </Tooltip>
+
         {actor.deathDay !== undefined && 
         <Tooltip title="Death Date" placement="right-start" arrow>
-            <Chip component="li" icon={<SentimentVeryDissatisfiedIcon />} label={`${actor.deathDay}`} sx={chip}/>
+            <Chip component="li" key={actor.id + ' ' + actor.deathDay} icon={<SentimentVeryDissatisfiedIcon />} label={`${actor.deathDay}`} sx={chip}/>
         </Tooltip>
         }
         <Tooltip title="Department" placement="right-start" arrow>
-            <Chip component="li" icon={<WorkIcon />} label={`${actor.known_for_department}`} sx={chip}/>
+            <Chip component="li" key={actor.id + ' ' + actor.known_for_department} icon={<WorkIcon />} label={`${actor.known_for_department}`} sx={chip}/>
         </Tooltip>
       </Paper>
       
@@ -60,8 +79,8 @@ const ActorDetails = ({ actor }) => {
       <Typography sx={{ fontSize: 18, m: 1 }} variant="subtitle1" gutterBottom>
         Links
       </Typography>
-        <a target="_blank" rel="noreferrer" href={`https://www.imdb.com/name/${actor.imdb_id}`} style={{textDecoration: 'none'}}>
-          <Button variant="contained" endIcon={<LinkIcon />}>IMDB</Button>
+        <a target="_blank" rel="noreferrer" href={`https://www.imdb.com/name/${actor.imdb_id}`} style={{textDecoration: 'none', display: 'contents'}}>
+          <Button sx={{maxWidth: '8%'}} variant="contained" endIcon={<LinkIcon />}>IMDB</Button>
         </a>
       </Paper>
 
@@ -69,7 +88,7 @@ const ActorDetails = ({ actor }) => {
         component="ul" 
         sx={root1}
       >
-        <li>
+        <li key='aka'>
           <Chip label="Also Known As" sx={chip1} color="primary" />
         </li>
         {actor.also_known_as.map((aka) => (
