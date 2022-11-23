@@ -20,6 +20,7 @@ const TemplateMoviePage = ({ movie, children }) => {
       return <h1>{error.message}</h1>;
 
     const images = data.posters;
+    const result = images.filter(image => image.iso_639_1 === 'en')
 
     return (
         <>
@@ -28,7 +29,7 @@ const TemplateMoviePage = ({ movie, children }) => {
           <Grid container spacing={5} sx={{ padding: "15px" }}>
             <Grid item xs={4}>
               <Carousel>
-              { images.map( (image) => 
+              { result.map( (image) => 
                 <Card key={image.file_path}>
                   <CardMedia
                     component="img"
