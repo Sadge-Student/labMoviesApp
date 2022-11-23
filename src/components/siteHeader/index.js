@@ -131,6 +131,7 @@ const SiteHeader = ({ history }) => {
                         }
                         </>
                     )}
+                    
                     <ThemeToggle />
                     
                     {error && <Alert severity="error">{error}</Alert>}
