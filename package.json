@@ -13,6 +13,7 @@
     "react-bottom-scroll-listener": "^5.1.0",
     "react-dom": "^18.0.1",
     "react-hook-form": "^7.34.2",
+    "react-markdown": "^8.0.3",
     "react-material-ui-carousel": "^3.4.2",
     "react-parallax-tilt": "^1.7.69",
     "react-query": "^3.13.0",
