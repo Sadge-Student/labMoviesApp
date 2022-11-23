@@ -29,16 +29,16 @@ const TemplateMoviePage = ({ movie, children }) => {
             <Grid item xs={4}>
               <Carousel>
               { images.map( (image) => 
-                <Card>
+                <Card key={image.file_path}>
                   <CardMedia
-                      component="img"
-                      image={'https://image.tmdb.org/t/p/w500/' + image.file_path}
-                      alt={image.poster_path}
-                      height="500"
-                      title={image.file_path}
-                      style={{
-                          objectFit: "contain" 
-                      }}
+                    component="img"
+                    image={'https://image.tmdb.org/t/p/w500/' + image.file_path}
+                    alt={image.poster_path}
+                    height="500"
+                    title={image.file_path}
+                    style={{
+                        objectFit: "contain" 
+                    }}
                   />
                 </Card>
               ) }
