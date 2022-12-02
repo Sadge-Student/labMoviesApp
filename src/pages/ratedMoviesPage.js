@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import {getMovies, getTopRatedMovies} from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
@@ -7,7 +7,18 @@ import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import Spinner from "../components/spinner";
 
 const RatedMoviesPage = (props) => {
-  const { data, error, isLoading, isError } = useQuery('top_rated', getTopRatedMovies);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, error, isLoading, isError, refetch } = useQuery('top_rated',() => getTopRatedMovies(currentPage));
+
+  useEffect(() => {
+    refetch();
+    topFunction();
+  }, [currentPage, refetch]);
+
+  function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
 
   if (isLoading)
     return <Spinner />;
@@ -16,14 +27,16 @@ const RatedMoviesPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const movies = data.results;
-  const favourites = movies.filter(m => m.favourite);
-  localStorage.setItem('favourites', JSON.stringify(favourites));
-  const addToFavourites = (movidId) => true
+  // const favourites = movies.filter(m => m.favourite);
+  // localStorage.setItem('favourites', JSON.stringify(favourites));
+  // const addToFavourites = (movidId) => true
 
   return (
     <PageTemplate
-      title="Top Rated Movies"
+      title={`Top Rated Movies | Page: ${currentPage}`}
       movies={movies}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
       action={(movie) => {
         return (
           <>
