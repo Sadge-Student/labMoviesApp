@@ -163,7 +163,7 @@ const MovieDetails = ({ movie }) => {
           Cast
         </Typography>
           
-          {!isLoading && 
+        {!isLoading && 
             <Grid item container spacing={5} sx={{p: 2}}>
               {cast.map((c) => (
                  <Grid key={c.credit_id} item xs={12} sm={6} md={3} lg={3} xl={3}>
@@ -185,7 +185,7 @@ const MovieDetails = ({ movie }) => {
                         ) : null
                       }
                       title={
-                          <Typography variant="h5" component="p"
+                          <Typography variant="h5" component="p" color="common.white"
                           sx={{
                           overflow: "hidden",
                           textOverflow: "ellipsis",
@@ -209,17 +209,17 @@ const MovieDetails = ({ movie }) => {
                           />
                       </Link>
                       <CardContent sx={{backgroundColor: '#121212'}}>
-                      <Typography variant="overline" component="p">
+                      <Typography variant="overline" component="p" color="common.white">
                         Character
                       </Typography>
                       <Grid container style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center'}}>
                         <Grid item xs={8}>
-                            <Typography variant="subtitle2" component="p">
+                            <Typography variant="subtitle2" component="p" color="common.white">
                                 {c.character}
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
-                          <Typography variant="h6" component="p">
+                          <Typography variant="h6" component="p" color="common.white">
                               <Tooltip title="Popularity: based on number of views for the day" arrow>
                                   <StarRateIcon fontSize="small" sx={{color: "gold"}} />
                               </Tooltip>
