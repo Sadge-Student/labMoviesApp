@@ -25,7 +25,9 @@ function MovieListPageTemplate({ movies, title, currentPage, setCurrentPage, act
 
     return (
         <>
-        <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+        {currentPage !== undefined && setCurrentPage !== undefined &&
+            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+        }
         <Grid container sx={{ padding: '20px'}}>
         <Grid item xs={12}>
             <Header title={title} />
@@ -41,7 +43,9 @@ function MovieListPageTemplate({ movies, title, currentPage, setCurrentPage, act
             <MovieList action={action} movies={displayedMovies}></MovieList>
         </Grid>
     </Grid>
-    <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+    {currentPage !== undefined && setCurrentPage !== undefined &&
+        <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+    }
     </>
     );
 }
