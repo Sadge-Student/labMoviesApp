@@ -38,7 +38,9 @@ const HomePage = (props) => {
           action={(movie) => {
             return (
             <>
-              <AddToFavouritesIcon movie={movie} />
+              {!movie.favourite &&
+                <AddToFavouritesIcon movie={movie} />
+              }
               <AddToMustWatch movie={movie} />
             </>
             );

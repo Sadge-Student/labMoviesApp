@@ -8,20 +8,54 @@ import Pagination from "../pagination";
 function MovieListPageTemplate({ movies, title, currentPage, setCurrentPage, action }) {
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
+    const [sortFilter, setSortFilter] = useState("");
     const genreId = Number(genreFilter);
-
-    let displayedMovies = movies
-        .filter((m) => {
-            return m.title.toLowerCase().search(nameFilter.toLocaleLowerCase()) !== -1;
-        })
-        .filter((m) => {
-            return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-        });
     
     const handleChange = (type, value) => {
-        if (type === "name") setNameFilter(value);
-        else setGenreFilter(value);
+        if (type === "name") {
+            setNameFilter(value);
+        } else if (type === "genre") {
+            setGenreFilter(value);
+        } else if (type === "sort") {
+            setSortFilter(value);
+        }
     };
+
+    let displayedMovies = movies
+    .filter((m) => {
+        return m.title.toLowerCase().search(nameFilter.toLocaleLowerCase()) !== -1;
+    })
+    .filter((m) => {
+        return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    
+    if (sortFilter === 'alphabetically') {
+        displayedMovies.sort( Alphabetical )
+    }
+
+    if (sortFilter === 'reverse-alphabetically') {
+        displayedMovies.sort( ReverseAlphabetical )
+    }
+
+    function ReverseAlphabetical( a, b ) {
+        if (a.title > b.title) {
+            return -1;
+        }
+        if (a.title < b.title) {
+            return 1;
+        }
+        return 0;
+    }
+
+    function Alphabetical( a, b ) {
+        if (a.title < b.title){
+          return -1;
+        }
+        if (a.title > b.title){
+          return 1;
+        }
+        return 0;
+      }
 
     return (
         <>
@@ -38,6 +72,7 @@ function MovieListPageTemplate({ movies, title, currentPage, setCurrentPage, act
                     onUserInput={handleChange}
                     titleFilter={nameFilter}
                     genreFilter={genreFilter}
+                    sortFilter={sortFilter}
                 />
             </Grid>
             <MovieList action={action} movies={displayedMovies}></MovieList>
