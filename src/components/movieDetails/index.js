@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -16,7 +18,14 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import img from "../../images/no-image.png";
 import Grid from "@mui/material/Grid";
-
+import { getMovieCredits } from "../../api/tmdb-api";
+import Tooltip from "@mui/material/Tooltip";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Tilt from "react-parallax-tilt";
+import CardContent from "@mui/material/CardContent";
+import Spinner from "../spinner";
+import Avatar from "@mui/material/Avatar";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const root = {
     display: "flex",
@@ -29,18 +38,33 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {
-  console.log(movie);
+  const { data, error, isLoading, isError } = useQuery(
+    ["credits", { id: movie.id }],
+    getMovieCredits
+  );
+
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  if (isLoading)
+    return <Spinner />
+
+  if (isError)
+    return <h1>{error.message}</h1>
+
+  const cast = data.cast;
+  console.log(cast);
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+    <Paper component="ul" sx={{ p: 0}}>
+    <Typography variant="h4" component="h4" sx={{backgroundColor: '#da614e'}}>
         Overview
       </Typography>
 
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
+    </Paper>
 
       <Paper component="ul" sx={root} >
         <li>
@@ -95,7 +119,7 @@ const MovieDetails = ({ movie }) => {
       <Paper component="ul" sx={{ p: 0}}>
         <Grid container sx={{ m: 0 }}>
           <Grid item xs={12}>
-            <Typography variant="h5" component="h3">
+            <Typography variant="h4" component="h4" sx={{backgroundColor: '#da614e'}}>
               Production Companies
             </Typography>
           </Grid>
@@ -132,6 +156,84 @@ const MovieDetails = ({ movie }) => {
             ))}
           </Grid>
         </Grid>
+      </Paper>
+
+      <Paper component="ul" sx={{ p: 0}}>
+        <Typography variant="h4" component="h4" sx={{backgroundColor: '#da614e'}}>
+          Cast
+        </Typography>
+          
+          {!isLoading && 
+            <Grid item container spacing={5} sx={{p: 2}}>
+              {cast.map((c) => (
+                 <Grid key={c.credit_id} item xs={12} sm={6} md={3} lg={3} xl={3}>
+                  <Tilt className="parallax-effect-glare-scale"
+                    perspective={500}
+                    glareEnable={false}
+                    glareMaxOpacity={0.45}
+                    transitionSpeed={1500}
+                    style={{borderRadius: '15px', borderStyle: 'solid', borderWidth: '2px', borderColor: '#000000', backgroundColor: '#060606'}}
+                  >
+                <Card sx={{borderRadius: '15px', backgroundColor: '#060606'}}>
+                    <CardHeader 
+                      sx={{backgroundColor: '#121212'}}
+                      avater={
+                        c.favourite ? (
+                        <Avatar sx={{ backgroundColor: 'red' }}>
+                            <FavoriteIcon />
+                        </Avatar>
+                        ) : null
+                      }
+                      title={
+                          <Typography variant="h5" component="p"
+                          sx={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: "1",
+                          WebkitBoxOrient: "vertical",
+                          }}
+                      >
+                        {c.name}{" "}
+                      </Typography>
+                        }
+                      />
+                      <Link to={`/actors/${c.id}`}>
+                          <CardMedia
+                          sx={{ height: 400, borderRadius: '15px', borderStyle: 'solid', borderWidth: '2px', borderColor: '#da614e', backgroundColor: '#121212', m : 1}}
+                          image={
+                              c.profile_path
+                              ? `https://image.tmdb.org/t/p/w500/${c.profile_path}`
+                              : img
+                          }
+                          />
+                      </Link>
+                      <CardContent sx={{backgroundColor: '#121212'}}>
+                      <Typography variant="overline" component="p">
+                        Character
+                      </Typography>
+                      <Grid container style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center'}}>
+                        <Grid item xs={8}>
+                            <Typography variant="subtitle2" component="p">
+                                {c.character}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography variant="h6" component="p">
+                              <Tooltip title="Popularity: based on number of views for the day" arrow>
+                                  <StarRateIcon fontSize="small" sx={{color: "gold"}} />
+                              </Tooltip>
+                              {"  "} {parseFloat(c.popularity).toFixed(1)}{" "}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      </CardContent>
+                </Card>
+                </Tilt>
+                </Grid>
+              ))}
+            </Grid>
+          }
       </Paper>
 
       <Fab
