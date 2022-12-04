@@ -16,7 +16,6 @@ import Grid from "@mui/material/Grid";
 import dayjs from "dayjs";
 
 export default function FantasyMovie({ movie }) {
-    // console.log(dayjs.unix(movie.movieReleaseDate.seconds));
     let day = dayjs.unix(movie.movieReleaseDate.seconds).$d.getDate();
     let month = dayjs.unix(movie.movieReleaseDate.seconds).$d.getMonth() + 1;
     let year = dayjs.unix(movie.movieReleaseDate.seconds).$d.getFullYear();
@@ -52,7 +51,7 @@ export default function FantasyMovie({ movie }) {
                 </Typography>
               }
               />
-              <Link to={`/movies/${movie.id}`}>
+              <Link to={`/fantasy-movies/${movie.movieName}`}>
             <CardMedia
               sx={{ height: 400 }}
               image={
@@ -70,17 +69,10 @@ export default function FantasyMovie({ movie }) {
                     {date}
                   </Typography>
                 </Grid>
-                {/* <Grid item xs={4}>
-                  <Typography variant="h6" component="p">
-                    <StarRateIcon fontSize="small" sx={{color: "gold"}} />
-                    {"  "} {parseFloat(movie.vote_average).toFixed(1)}{" "}
-                  </Typography>
-                </Grid> */}
               </Grid>
             </CardContent>
           </Tilt>
           <CardActions disableSpacing>
-            {/* {action(movie)} */}
             <Link to={`/movies/${movie.id}`} style={{ textDecoration: 'none' }}>
               <Button variant="outlined" size="medium" color="primary">
                 More Info ...
