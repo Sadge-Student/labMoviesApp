@@ -52,7 +52,6 @@ const MovieDetails = ({ movie }) => {
     return <h1>{error.message}</h1>
 
   const cast = data.cast;
-  console.log(cast);
 
   return (
     <>
