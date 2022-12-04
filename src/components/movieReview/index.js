@@ -7,7 +7,6 @@ import Paper from "@mui/material/Paper";
 const chip = { margin: 0.5 };
 
 const MovieReview = ({ review }) => {
-    console.log(review);
     return (
         <>
         <Paper component="ul" sx={{ p: '0 15px 15px 15px'}}>

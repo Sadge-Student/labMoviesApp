@@ -19,13 +19,14 @@ const MoviesContextProvider = (props) => {
             let id = String(movieId);
             if (id === data) {
                 exists = true;
-                return;
+                return true;
             }
             });
             return;
         })
         if (exists) {
             console.log("This already exists");
+            return false;
         } else {
             await addDoc(collection(db, `${currentUser.uid}/favourites/favourite`), {
                 text: movieId

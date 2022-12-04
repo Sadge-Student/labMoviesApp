@@ -4,8 +4,7 @@ import Header from "../headerMovieList";
 import ActorList from "../actorList";
 
 function ActorListPageTemplate( { actors, title, action }) {
-    const [nameFilter, setNameFilter] = useState("");
-    
+
     return (
         <Grid container sx={{ padding: '20px'}}>
             <Grid item xs={12}>

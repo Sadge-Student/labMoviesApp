@@ -5,8 +5,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import Autocomplete from "@mui/material/Autocomplete";
 import { getGenres } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
@@ -32,11 +30,6 @@ const CreateFantasyMoviePage = (props) => {
 
   const handleChange = (newValue) => {
       setDate(newValue);
-  };
-  
-  const handleSnackClose = (event) => {
-  setOpen(false);
-  // navigate("/fantasy-movies/");
   };
 
   const handleAddCast = () => {
@@ -134,9 +127,6 @@ const CreateFantasyMoviePage = (props) => {
             maxRows={4}
             variant="outlined"
             margin="normal"
-            // required
-            // onChange={onChange}
-            // value={value}
             id="movie-overview"
             name="movie-overview"
             label="Movie's Overview"
@@ -147,7 +137,6 @@ const CreateFantasyMoviePage = (props) => {
             variant="outlined"
             margin="normal"
             required
-        //   onChange={onChange}
             name="movie-image-url"
             id="movie-image-url"
             label="Movie's Image URL"
@@ -240,7 +229,6 @@ const CreateFantasyMoviePage = (props) => {
               Remove
             </Button>
           }
-          {/* castList.length - 1 === index && castList.length < 4 &&  */}
           {castList.length - 1 === index && 
             <Box sx={{m: '20px 0 0 0'}}>
             <Button

@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
-import Header from "../headerMovieList";
-import FilterCard from "../filterMoviesCard";
 import FantasyMovieList from "../fantasyMovieList";
-import Pagination from "../pagination";
 
 function FantasyMovieTemplate({ movies }) {
     return (

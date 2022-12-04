@@ -5,9 +5,8 @@ import { getMovie } from "../api/tmdb-api";
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import Spinner from "../components/spinner";
-// import useMovie from "../hooks/useMovie";
 
-const MovieDetailsPage = (props) => {
+const MovieDetailsPage = () => {
   const { id } = useParams();
 
   const { data: movie, error, isLoading, isError } = useQuery(

@@ -6,7 +6,7 @@ import AddToMustWatch from "../components/cardIcons/addToMustWatch";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import Spinner from "../components/spinner";
 
-const UpcomingMoviesPage = (props) => {
+const UpcomingMoviesPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, error, isLoading, isError, refetch } = useQuery('upcoming',() => getUpcomingMovies(currentPage));
 
@@ -27,9 +27,6 @@ const UpcomingMoviesPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const movies = data.results;
-  // const favourites = movies.filter(m => m.favourite);
-  // localStorage.setItem('favourites', JSON.stringify(favourites));
-  // const addToFavourites = (movidId) => true
 
   return (
     <PageTemplate

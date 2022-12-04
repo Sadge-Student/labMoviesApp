@@ -2,8 +2,6 @@ import React from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button";
-import LinkIcon from "@mui/icons-material/Link";
 import Grid from "@mui/material/Grid";
 import Tilt from "react-parallax-tilt";
 import CardContent from "@mui/material/CardContent";
@@ -82,21 +80,19 @@ const FantasyMovieDetails = ({ movie }) => {
                                 WebkitLineClamp: "1",
                                 WebkitBoxOrient: "vertical",
                                 }}
-                            >
+                                >
                                 {c.castName}{" "}
-                            </Typography>
-                                }
+                                </Typography>
+                            }
                             />
-                            {/* <Link to={`/actors/${c.id}`}> */}
-                                <CardMedia
+                            <CardMedia
                                 sx={{ height: 400, borderRadius: '15px', borderStyle: 'solid', borderWidth: '2px', borderColor: '#da614e', backgroundColor: '#121212', m : 1}}
                                 image={
                                     c.castImageURL
                                     ? `${c.castImageURL}`
                                     : img
                                 }
-                                />
-                            {/* </Link> */}
+                            />
                             <CardContent sx={{backgroundColor: '#121212'}}>
                             <Typography variant="overline" component="p" color="common.white">
                                 Character

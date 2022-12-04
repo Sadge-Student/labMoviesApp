@@ -46,8 +46,6 @@ const FavouriteMoviesPage = () => {
         return q.data;
     });
 
-    const toDo = () => true;
-
     return (
         <>
         {!loading && 

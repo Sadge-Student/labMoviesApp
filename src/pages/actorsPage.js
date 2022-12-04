@@ -15,9 +15,6 @@ const PopularActorsPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const actors = data.results;
-  const favourites = actors.filter(m => m.favourite);
-  localStorage.setItem('Actorfavourites', JSON.stringify(favourites));
-  const addToFavourites = (actorId) => true
 
   return (
     <>

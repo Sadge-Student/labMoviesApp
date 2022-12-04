@@ -27,9 +27,6 @@ const PopularMoviesPage = (props) => {
     return <h1>{error.message}</h1>;
 
   const movies = data.results;
-  // const favourites = movies.filter(m => m.favourite);
-  // localStorage.setItem('favourites', JSON.stringify(favourites));
-  // const addToFavourites = (movidId) => true
 
   return (
     <PageTemplate
