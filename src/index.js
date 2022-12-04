@@ -25,6 +25,7 @@ import SignUpPage from "./pages/signupPage";
 import LoginPage from "./pages/loginPage";
 import CreateFantasyMoviePage from "./pages/createFantasyMoviePage";
 import FantasyMoviesPage from "./pages/fantasyMoviesPage";
+import FantasyMovieDetailsPage from "./pages/fantasyMovieDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,6 +62,7 @@ const App = () => {
                       <Route exact path="/actors/favourites" element={<FavouriteActorsPage />} />
                       <Route exact path="/create/movie" element={<CreateFantasyMoviePage />} />
                       <Route exact path="/fantasy-movies" element={<FantasyMoviesPage />} />
+                      <Route path="/fantasy-movies/:fantasyName" element={<FantasyMovieDetailsPage />} />
                     </Route>
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/login" element={<LoginPage />} />
