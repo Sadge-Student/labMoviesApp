@@ -56,7 +56,9 @@ const SiteHeader = ({ history }) => {
         { label: "Popular", path: "/movies/popular" },
         { label: "Top Rated", path: "/movies/rated" },
         { label: "Actors", path: "/actors/" },
-        { label: "Favourite Actors", path: "/actors/favourites"}
+        { label: "Favourite Actors", path: "/actors/favourites"},
+        { label: "Create Fantasy Movie", path: "/create/movie"},
+        { label: "View Fantasy Movies", path: "/fantasy-movies"}
     ];
 
     const handleMenuSelect = (pageURL) => {
