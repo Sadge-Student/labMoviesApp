@@ -26,8 +26,6 @@ function FantasyMoviePage() {
     if (loading)
     return <Spinner />;
 
-    console.log(movies);
-
     return (
         <>
         {!loading && 
