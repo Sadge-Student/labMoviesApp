@@ -35,7 +35,7 @@ const FantasyMovieHeader = (props) => {
           </Typography>
             
           <Typography variant="h5" component="h5" gutterBottom>
-              Biography
+              Overview
           </Typography>
           <Typography sx={{ fontSize: 12, m: 1 }} variant="subtitle1" gutterBottom>{`"${movie.movieOverview}"`} </Typography>
         </div>
