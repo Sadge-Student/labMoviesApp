@@ -147,6 +147,7 @@ Created a movie application to store your favourite movies and actors. Discover 
 ## Setup requirements.
 
 `Run npm install`
+
 Create an .env file and add the API keys and variables for both Firebase and TMDB
 
 + https://firebase.google.com/
@@ -173,11 +174,7 @@ Create an .env file and add the API keys and variables for both Firebase and TMD
 
 ### Component catalogue.
 
-[ Insert a screenshot from the Storybook UI, and highlight the stories that relate to your __new/modified components__ - see the example screenshot below.] .......
-
-e.g.
-
-![](./images/stories.png)
+![](https://i.imgur.com/haJkCQ7.png)
 
 ### UI Design.
 
