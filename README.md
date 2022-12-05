@@ -333,3 +333,5 @@ To access the app requires an account otherwise page will redirected to the sign
 + [React UUID](https://github.com/RickBr0wn/react-uuid#readme)
 + [React Parallex Tilt](https://mkosir.github.io/react-parallax-tilt/)
 + [React Material UI Carousel](https://github.com/Learus/react-material-ui-carousel#react-material-ui-carousel-)
++ [DayJS](https://github.com/iamkun/dayjs/#getting-started)
++ [x-date-pickers](https://mui.com/x/react-date-pickers/getting-started/)
